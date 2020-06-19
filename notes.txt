@@ -1,0 +1,34 @@
+Nuwa Data Analysis
+
+Flurry
+cheng.oscar@nuwarobotics.com
+test_123
+
+eyJhbGciOiJIUzI1NiIsImtpZCI6ImZsdXJyeS56dXVsLnByb2Qua2V5c3RvcmUua2V5LjIifQ.eyJpc3MiOiJodHRwczovL3p1dWwuZmx1cnJ5LmNvbTo0NDMvdG9rZW4iLCJpYXQiOjE1NjE5NDkwMzMsImV4cCI6MzMxMTg4NTc4MzMsInN1YiI6IjQ0ODYwMCIsImF1ZCI6IjQiLCJ0eXBlIjo0LCJqdGkiOiI5NzIwIn0.OZI9cyL6MyqKYxSqVHgVloGEmtCNWSE2RPY86P46DvM
+
+Email ( http://www.ali-exmail.cn/Land/ )
+cheng.oscar@nuwarobotics.com
+nuwa#1234
+
+Docker
+oscarchengnuwa
+test_1234
+
+Schedule
+~9:30 Flexible
+~12:00-1:30 Lunch
+~7:00 OffWork
+
+SourceTree
+cheng.oscar@nuwarobotics.com
+test_123
+
+Task#2
+讓城市接收外部指令
+時間
+下載的app type
+經過Dockerfile包裝
+上傳至百度智能蝹
+安裝SDK工具包
+
+209520
