@@ -5,5 +5,5 @@ Intern Project at NUWA Robotics:
 * Data upload and connection to Baidu Cloud.
 
 Content not in the repo: 
-* Working script using BeautifulSoup and Selenium.
+* Working script webscraping script using BeautifulSoup and Selenium.
 * Docker file used to package the system into containers.
