@@ -1,0 +1,64 @@
+.App{
+  min-height: 100vh;
+  background: #76b852;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8DC26F, #76b852);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #8DC26F, #76b852); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.recipes{
+ position: absolue;
+ left: 50%;
+ width: 40%;
+ margin-left: 40%;
+
+  /* justify-content: space-around; */
+  /* flex-wrap: wrap; */
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.search-form{
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar{
+  position:absolute;
+  left:58.5%;
+  top:8%;
+  width: 30%;
+  border: none;
+  padding: 10px;
+}
+
+.search-button{
+  position:absolute;
+  left:90%;
+  top:8%;
+  background-color:rgb(252, 255, 62);
+  border: none;
+  padding: 10px 20px;
+  color: rgb(0, 0, 0);
+
+} 
