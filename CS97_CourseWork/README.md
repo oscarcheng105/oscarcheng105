@@ -1,2 +1,4 @@
 # CS97 - Software Construction Projects
-Coursework from CS97
+Fundamentals of tools and environments for software construction projects, particularly open-source platforms used in upper-division computer science courses.
+
+Coursework from CS97.
