@@ -4,3 +4,4 @@ Python projects developed in highschool using tkinter
 * Paddle Game
 * Minesweeper
 * TikTakToe
+* Stick Man
