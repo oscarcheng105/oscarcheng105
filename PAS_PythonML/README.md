@@ -1,2 +1,2 @@
 # Highschool - Introduction to Machine Learning
-Coursework from High school on introductory machine learning subjects.
+Coursework from High school (PAS) on introductory machine learning subjects.
