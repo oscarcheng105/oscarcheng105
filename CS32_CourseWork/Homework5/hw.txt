@@ -1,0 +1,112 @@
+Oscar(Kai-Chen) Cheng
+305 375 558
+
+1a.
+50
+	20
+		10
+			xx
+			15
+		40
+			30
+				25
+				36
+			xx
+	60
+		xx
+		70
+			65
+			80
+				74
+				xx
+
+1b.
+
+InOrder: 10,15,20,25,30,36,40,50,60,65,70,74,80
+PostOrder: 50,20,10,15,40,30,25,36,60,70,65,80,74
+PreOrder: 15,10,25,36,30,40,20,65,74,80,70,60,50
+
+1c.
+
+50
+	15
+		10
+		40
+			25
+				xx
+				36
+			xx
+	60
+		xx
+		70
+			65
+				xx
+				74
+			80
+
+2a.
+struct Node
+{
+	int m_value;
+	Node* left;
+	Node* right:
+	Node* parent;
+}
+
+2b.
+//n is at first root pointer
+Node* insert(Node* n, int value)
+{
+if n is nullptr
+	return new node with value assigned as m_value
+if value is smaller than m_value of node
+	create temporary Node* leftChild and assign it to recursive call insert(n->left, value)
+	assign leftChild to n->left
+	assign leftChild's parent pointer as n
+else if value is larger than m_value of node
+	create temporary Node* rightChild and assign it to recursive call insert(n->right, value)
+	assign rightChild to n->right
+	assign rightChild's parent pointer as n;
+return n;
+}
+
+3a. 
+
+7
+	5
+		3
+		0
+	6
+		1
+		xx
+
+3b.
+7 5 6 3 0 1
+
+
+3c.
+6 5 1 3 0
+
+4a.
+O(C+S)
+
+4b.
+O(log C + S)
+
+4c.
+O(log C + log S)
+
+4d.
+O(log S)
+
+4e.
+O(1)
+
+4f.
+O(log C + S)
+
+4g.
+O(S log S)
+
+4h.
+O(C log S) 

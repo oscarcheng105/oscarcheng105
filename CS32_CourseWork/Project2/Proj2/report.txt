@@ -1,0 +1,161 @@
+Oscar (Kai-Chen) Cheng
+305 375 558
+
+1. My doubly linked list contains an int variable that stores the value and two node pointers where *next indicates the node after the current node and the *prev indicates the node before the current node. An empty Set will have a null head pointer, while a normal set will have the head pointer point to the first node where its *prev will be nullptr and *next will point to another node (or null if Set only has one node). The node referenced by *next will also have a *next that points to another node and a *prev that points to the current node. This is repeated until it reaches the last node, where its *next will be nullptr.
+
+2. 
+void unite(const Set& s1, const Set& s2, Set& result)
+{
+    ItemType match;
+    for(int i=result.size()-1; i>=0; i--) //clear original items in result
+    {
+        result.get(i, match); //get each item in result
+        result.erase(match); //erase item node
+    }
+    for(int j=0; j<s1.size();j++) //add s1 to result
+    {
+        s1.get(j,match); //get each item in s1
+        result.insert(match); //add each item in s1 to result
+    }
+    for(int k=0; k<s2.size();k++) //add s2 to result
+    {
+        s2.get(k,match); //get each item in s2
+        result.insert(match); //add each item in s2 to result
+    }
+}
+
+void subtract(const Set& s1, const Set& s2, Set& result)
+{
+    ItemType match;
+    for(int i=result.size()-1; i>=0; i--) //clear original items in result
+    {
+        result.get(i, match); //get each item in result
+        result.erase(match); //erase each item
+    }
+    for(int j=0; j<s1.size(); j++) //add s1 to result
+    {
+        s1.get(j,match); //get each item in s1
+        result.insert(match); //add each item in s1 to result
+    }
+    for(int k=s2.size(); k>=0; k--) //erase items that overlap with s1
+        if(s2.get(k,match)) //get each item in s2
+            result.erase(match); //erase item in result
+}
+
+3.
+#include "Set.h"
+#include <cassert>
+
+int main()
+{
+    Set ss;  // ItemType is std::string
+    assert(ss.empty()); //check if empty() works correctly, if ss is empty.
+    
+    ss.insert("ccc");
+    ss.insert("aaa");
+    ss.insert("bbb");
+    
+    assert(ss.size()==3); //check size() function
+    
+    assert(ss.contains("ccc")); //check if values are correctly inserted
+    assert(ss.contains("aaa"));
+    assert(ss.contains("bbb"));
+    assert(!ss.contains("xxx"));
+    
+    ItemType x = "xxx";
+    assert(!ss.get(3,x) && x == "xxx"); //check if get() function works correctly
+    assert(ss.get(0,x) && x == "aaa");
+    assert(ss.get(1,x) && x == "bbb");
+    assert(ss.get(2,x) && x == "ccc");
+    
+    Set cc;
+    
+    cc.insert("lll");
+    cc.insert("ppp");
+    cc.insert("ooo");
+    cc.insert("mmm");
+    cc.insert("nnn");
+    
+    ss.swap(cc); //check if swap() function works correctly
+    
+    assert(ss.contains("lll")); //check if ss contains according variables after swap
+    assert(ss.contains("ppp"));
+    assert(ss.contains("ooo"));
+    assert(ss.contains("mmm"));
+    assert(ss.contains("nnn"));
+    assert(!ss.contains("ccc"));
+    assert(!ss.contains("aaa"));
+    assert(!ss.contains("bbb"));
+    
+    assert(cc.contains("ccc")); //check if cc contains according variables after swap
+    assert(cc.contains("aaa"));
+    assert(cc.contains("bbb"));
+    assert(!cc.contains("lll"));
+    assert(!cc.contains("ppp"));
+    assert(!cc.contains("ooo"));
+    assert(!cc.contains("mmm"));
+    assert(!cc.contains("nnn"));
+    
+    Set aa;
+    
+    aa.insert("xxx");
+    aa.insert("yyy");
+    aa.insert("zzz");
+    
+    cc.insert("lll"); //Set up for unite() test
+    
+    unite(cc, ss, aa);
+    assert(aa.size()==8); //check if aa contain correct amount of variables after unite() function
+    assert(aa.contains("ccc")); //check if unite() function works correctly
+    assert(aa.contains("aaa"));
+    assert(aa.contains("bbb"));
+    assert(aa.contains("lll"));
+    assert(aa.contains("ppp"));
+    assert(aa.contains("ooo"));
+    assert(aa.contains("mmm"));
+    assert(aa.contains("nnn"));
+    assert(!aa.contains("xxx"));
+    assert(!aa.contains("yyy"));
+    assert(!aa.contains("zzz"));
+    
+    assert(cc.erase("aaa")); //check if erase() function works correctly
+    assert(!cc.contains("aaa"));
+    assert(cc.erase("bbb"));
+    assert(!cc.contains("bbb"));
+    assert(cc.erase("ccc"));
+    assert(!cc.contains("ccc"));
+    assert(cc.size()==1); //check size after erase()
+    
+    cc.insert("mmm"); //setup for subtract() test
+    
+    subtract(ss,cc,aa);
+    assert(aa.size()==3); //check if aa contain correct amount of variables after subtract() function
+    assert(aa.contains("ppp"));  //check if subtract() function works correctly
+    assert(aa.contains("ooo"));
+    assert(aa.contains("nnn"));
+    
+    Set bb=aa; //check Copy constructor
+    assert(bb.contains("ppp"));
+    assert(bb.contains("ooo"));
+    assert(bb.contains("nnn"));
+    
+    assert(bb.size()==3);
+     
+    assert(bb.erase("nnn"));
+    assert(!bb.contains("nnn"));
+    
+    assert(aa.contains("nnn"));
+    
+    Set kk;
+    
+    kk.insert("ggg");
+    
+    kk=aa; //check assignment operator
+        
+    assert(kk.size()==3);
+    
+    assert(kk.contains("ppp"));
+    assert(kk.contains("ooo"));
+    assert(kk.contains("nnn"));
+    assert(!kk.contains("ggg"));
+}

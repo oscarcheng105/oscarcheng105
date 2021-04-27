@@ -1,0 +1,38 @@
+Oscar Cheng
+305 375 558
+
+2. 
+(3,5),
+(3,6),
+(3,4),
+(2,4),
+(1,4),
+(1,3),
+(1,2),
+(1,1),
+(2,1),
+(3,3),
+(4,5),
+(5,5)
+
+
+4.
+(3,5),
+(4,5),
+(3,4),
+(3,6),
+(5,5),
+(3,3),
+(2,4),
+(6,5),
+(5,4),
+(1,4),
+(7,5),
+(5,3)
+
+The stack method visits each cell continuously until the end and goes back to the cells that has yet be examined. For example, if coordinate (1,2) has two moving option (1,3) and (2,2), and if (2,2) is the cell that is last added in, it will develop this cell route all the way until there is not other moving options in this cell route. To further elaborate, if (2,2) has moving option (2,3) and (3,2), where (3,2) is added last, the method would further examine the moving option of (3,2) until it has no moving options. It then comes back to examine the route of (2,3) and does the same. If it still hasn't reach its destination, it then comes back to (1,3) and examine its possible cell route.
+
+As for the queue method, it examines each cell route one by one, layer by layer. For example, if (1,2) has moving option (1,3) and (2,2), and (1,3) comes first, it will examine its first layer of moving options, which can be (1,4) and (0,3). These moving options derived from (1,3) is then added to the queue. The queue then turns back to (2,2) and examine its first layer of cell route, then add it to the queue. After the very first two moving options (1,3) and (2,2) is examined, it then turns to (1,4) and (0,3) and other  cells that are added (2,2), examining other possible moving options. The queue method repeat this process until it finds its destination.
+
+
+

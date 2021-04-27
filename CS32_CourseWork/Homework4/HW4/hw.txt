@@ -1,0 +1,19 @@
+Oscar Cheng 305 375 558
+
+2.
+Since the templated parameter passed in to the function is a Class, you cannot compare the passed in classes directly with the m_value in each of the linked list unless Coord has an operator declaration that allows this kind of comparison. If the parameter passed in are simple data members like int, double, float, or strings, you can compare the m_value of each Nodes with the passed in value. But when a class is passed in as parameter, you cannot directly compare m_value (which is a Class) with value(which is another Class).
+
+3a.
+Since the algorithm has three for loops that traverse from 0 to N, the time complexity is O(N^3)
+
+3b.
+In the first for loop the time complexity will be O(N) as i increments to i<N, In the second for loop j increments to j<i, but since i increments to i<N, we find the maximum incrementation of i, which is still N, so we replace j<i with j<N, so the time complexity for the second for loop is also O(N). In the third loop k increments to k<N, which has a time complexity of O(N). By the end, the total time complexity is still O(N^3)
+
+4a.
+The time complexity will be the same O(N^2). The for loop at the last has the most frequent operations, where the for loop runs N times and the insert runs at most N times. which gives O(N^2). 
+
+4b.
+The time complexity will be O(N*logN). The first for loops will go through the elements of set1, which has N elements, that gives us O(N). The second for loop does the same as the first so we get O(N). The sort function gives (N*logN). The while loop that deletes the linked list nodes gives O(1) as m_head->m_next is always replaced with another node and you are only deleting the node that m_head is pointing at. We then go to another for loop where k=0 and k<sizeOfV, where size of V equals to 2N, but since we are ignoring the constants this for loop gives O(N); it accessing vector with index gives O(1) and insertBefore with m_head also gives O(1). This indicates that the sort function actually gives the time complexity of this function since N*logN>N>1. Therefore the time complexity is O(N*logN)
+
+4c.
+The time complexity will be O(N). sp will first copy set2, which gives O(N). And since *this is going through operator= by pointer, *this=set1 gives O(1). We then add values of set2 that are less than set1 to result through the while loop, which gives O(N) as long as one of them reaches their m_head. We then get to the last for loop where we loop through all elements of set2 and get a time complexity of O(N). In the end we get the maximum time complexity which is O(N).
