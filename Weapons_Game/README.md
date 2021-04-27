@@ -1,4 +1,5 @@
 # WeaponsGame (ACM Game Studio) Winter 2021
+Parts of the game that I worked on:
 * A* pathfinding package made by Aron Granberg.
-* Scripts and assets of my part in the game development.
+* Scripts and assets of Pirate's AI.
 * File of prototype game.
