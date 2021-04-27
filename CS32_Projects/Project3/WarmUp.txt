@@ -1,0 +1,178 @@
+
+// QUESTION 1~4
+#include <list>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <cassert>
+using namespace std;
+
+vector<int> destroyedOnes;
+
+class Movie
+{
+  public:
+    Movie(int r) : m_rating(r) {}
+    ~Movie() { destroyedOnes.push_back(m_rating); }
+    int rating() const { return m_rating; }
+  private:
+    int m_rating;
+};
+
+  // Remove the movies in li with a rating below 50 and destroy them.
+  // It is acceptable if the order of the remaining movies is not
+  // the same as in the original list.
+void removeBad(list<Movie*>& li)
+{
+    for(list<Movie*>::iterator p = li.begin(); p!=li.end(); p++)
+        if((*p)->rating()<50)
+        {
+            delete (*p);
+            p = li.erase(p);
+            p--;
+        }
+}
+
+void removeBad(vector<Movie*>& v)
+{
+    for(vector<Movie*>::iterator p = v.begin(); p!=v.end(); p++)
+        if((*p)->rating()<50)
+        {
+            delete (*p);
+            p = v.erase(p);
+            p--;
+        }
+}
+
+  // Remove the odd integers from li.
+  // It is acceptable if the order of the remaining even integers is not
+  // the same as in the original list.
+void removeOdds(list<int>& li)
+{
+    for(list<int>::iterator p = li.begin(); p!=li.end(); p++)
+        if((*p)%2 == 1)
+        {
+            p = li.erase(p);
+            p--;
+        }
+}
+
+void removeOdds(vector<int>& v)
+{
+    for(vector<int>::iterator p = v.begin(); p!=v.end(); p++)
+        if((*p)%2 ==1)
+        {
+            p = v.erase(p);
+            p--;
+        }
+}
+
+void test()
+{
+    int a[8] = { 85, 80, 30, 70, 20, 15, 90, 10 };
+    vector<Movie*> x;
+    for (int k = 0; k < 8; k++)
+        x.push_back(new Movie(a[k]));
+    assert(x.size() == 8 && x.front()->rating() == 85 && x.back()->rating() == 10);
+    removeBad(x);
+    assert(x.size() == 4 && destroyedOnes.size() == 4);
+    vector<int> v;
+    for (int k = 0; k < 4; k++)
+        v.push_back(x[k]->rating());
+    sort(v.begin(), v.end());
+    int expect[4] = { 70, 80, 85, 90 };
+    for (int k = 0; k < 4; k++)
+        assert(v[k] == expect[k]);
+    sort(destroyedOnes.begin(), destroyedOnes.end());
+    int expectGone[4] = { 10, 15, 20, 30 };
+    for (int k = 0; k < 4; k++)
+        assert(destroyedOnes[k] == expectGone[k]);
+    for (vector<Movie*>::iterator p = x.begin(); p != x.end(); p++)
+        delete *p;
+}
+
+/*#include <iostream>
+#include <vector>
+#include <list>
+using namespace std;
+
+const int MAGIC = 11223344;
+
+void test()
+{
+    bool allValid = true;
+
+    vector<int> v1(5, MAGIC);
+    int k = 0;
+    for ( ; k != v1.size(); k++)
+    {
+        if (v1[k] != MAGIC)
+        {
+            cout << "v1[" << k << "] is " << v1[k] << ", not " << MAGIC <<"!" << endl;
+            allValid = false;
+        }
+        if (k == 2)
+        {
+            for (int i = 0; i < 5; i++)
+                v1.push_back(MAGIC);
+        }
+    }
+    if (allValid  &&  k == 10)
+        cout << "Passed test 1" << endl;
+    else
+        cout << "Failed test 1" << endl;
+
+    allValid = true;
+    list<int> l1(5, MAGIC);
+    k = 0;
+    for (list<int>::iterator p = l1.begin(); p != l1.end(); p++, k++)
+    {
+        if (*p != MAGIC)
+        {
+            cout << "Item# " << k << " is " << *p << ", not " << MAGIC <<"!" << endl;
+            allValid = false;
+        }
+        if (k == 2)
+        {
+            for (int i = 0; i < 5; i++)
+                l1.push_back(MAGIC);
+        }
+    }
+    if (allValid  &&  k == 10)
+        cout << "Passed test 2" << endl;
+    else
+        cout << "Failed test 2" << endl;
+
+    allValid = true;
+    vector<int> v2(5, MAGIC);
+    k = 0;
+    for (vector<int>::iterator p = v2.begin(); p != v2.end(); p++, k++)
+    {
+        //vector reallocates all element to a new enlarged array when its expanded,
+        //the memory position of the expanded array is different.
+        //p = v2.begin();
+        //p+=k;
+        if (k >= 20)  // prevent infinite loop
+            break;
+        if (*p != MAGIC)
+        {
+            cout << "Item# " << k << " is " << *p << ", not " << MAGIC <<"!" << endl;
+            allValid = false;
+        }
+        if (k == 2)
+        {
+            for (int i = 0; i < 5; i++)
+                v2.push_back(MAGIC);
+        }
+    }
+    if (allValid  &&  k == 10)
+        cout << "Passed test 3" << endl;
+    else
+        cout << "Failed test 3" << endl;
+}
+
+int main()
+{
+    test();
+}
+*/

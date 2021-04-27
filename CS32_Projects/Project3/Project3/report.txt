@@ -1,0 +1,155 @@
+Oscar (Kai-Chen) Cheng 305 375 558
+
+1.
+The goblin recursive pathfinder is in Monsters.cpp, named as 
+
+bool Goblin::pathFind(char maze[][70], char temp[][70], int sr, int sc, int er, int ec, int steps, int maxSteps);
+
+2.
+The project is designed into three main layers, the Arena(aka Level), the Actor, the GameObjects, and some supporting classes such as Coord.h
+
+The Arena.h organizes everything that happens in the level, from player/monsters movement to hit, looting...etc;
+It contains a main Player pointer, a vector of Monster pointers, and a vector of GameObject pointers to keep record of the status (such as hit points, location...etc) of the player, monsters, and game objects.
+
+The Actor.h organizes all movable actors in the level, with subclasses of Monsters.h and Player.h. They all contain changeable attributes such as hitPoints, Strength, Dexterity, Sleeptime, Wielding Weapons...etc. Monsters are also classified into specific monsters such as Snakewomen, Bogeymen, Goblin, and Dragon. 
+
+The GameObject.h creates objects that is going to exist in the level. Game object is also divided into sub classes of Weapon.h, Scroll.h, and the GoldenIdol (located inside GameObject.h), where Weapons.h and Scroll.h have sub-sub classes of specific weapons (ex. mace, longSword, magicAxe...etc) and scrolls (ex. scroll of improved armor, scroll of teleportation...etc). 
+
+The Coord.h is used to give each gameObject and actor a assigned coordinate to keep track of their positions.
+
+3.
+    
+void action(char &d)
+{
+get player position
+check if player can regenerate hit points
+check if player is asleep
+check if player moved
+if player doesn't move
+	check if player hits
+	check if player uses scrolls
+	check if player equips weapons
+check if player picks up things
+check if player uses cheat
+check if player enters next level through stair
+}
+
+void pickUp()
+{
+loop through all objects existing in level
+	check if player position overlaps with object's position
+		put object in player's inventory
+			generate pickup messages
+			set object's condition to picked
+			if picks up goldenIdol
+				then set win condition to true to end game
+}
+    
+bool playerMove(char &d, int &r, int &c)
+{
+check which output does player inputed (h,l,j,k)
+	update the direction in terms of row and col
+if player's updated direction is block
+	exit function
+update player's coordinate
+}
+
+void playerHits(const int &r,const  int &c)
+{
+Loops through all monsters in list
+	see if player hit's this monster
+		call hit() function and return the hit message
+			break
+}
+
+void monsterMove()
+{
+loop through all monsters
+	check if they are alive, awake
+		let snake women and bogeyman run it's path finding algorithm
+		let Dragon regenerate health with 1 to 10 possibility
+		let goblin path find
+			calculate the necessary steps count for goblin to get to player
+			if step count is more than one step and under the scope of goblin's smell distance
+				call goblin's recursion path find
+}
+void monsterHits()
+{
+loop through all monsters
+	if player is around them
+		then hit and return hit message
+}
+    
+std::string hit(Actor& a1, Actor& a2);
+{
+generate variables for formula
+if formula leads to hit
+	then calculate damage and hit
+	if hit points is zero
+		announce dead
+		return dead string
+	if uses magic Fangs
+		set sleep condition
+		return sleep string
+	return hit string
+return miss string
+}
+
+void monsterDead(Actor& m)
+{
+call loot()
+loop through all monsters
+	if monster matches the Actor passed in
+		then set living() as false
+		break
+}
+
+void loot(Actor& m)
+{
+check if monster's position has game object
+	if yes then exit function
+generate according loot based on randomized possibility (except dragon)
+}
+
+simple PATHFINDING
+{
+//check the necessary steps to find the player
+//if necessary steps exceeds 5
+	then exit;
+//check if player is up, down, right, or left of the monster
+//Check player's position relative to the monster
+	check if monster should go up,down,right,or left
+		update  monster's supposed direction in terms of row and col
+//Update monster's position if the path is not blocked
+}
+
+Goblin PATHFINDING
+
+bool Goblin::pathFind(char maze[][70], char temp[][70], int sr, int sc, int er, int ec, int steps, int maxSteps)
+{
+check if goblin's current position is acceptable, not blocked by wall or monsters, and hasn't step more than the maximum steps it should take
+check base case
+
+mark walked paths
+
+if goblin can walk DOWN, then RECURSIVE to continue explore
+	if there's a path available, trace back to the initial step and move goblin's location
+		update's goblin's position
+
+if goblin can walk UP, then RECURSIVE to continue explore
+	if there's a path available, trace back to the initial step and move goblin's location
+		update's goblin's position
+
+if goblin can walk RIGHT, then RECURSIVE to continue explore
+	if there's a path available, trace back to the initial step and move goblin's location
+		update's goblin's position
+
+if goblin can walk LEFT, then RECURSIVE to continue explore
+	if there's a path available, trace back to the initial step and move goblin's location
+		update's goblin's position
+
+}
+
+
+4.
+Major Features not included is Random Dungeon Map generation, Goblin pathfinder is buggy sometimes (ex. if  @..S..G, G sometimes does not know that it should approach left). 
