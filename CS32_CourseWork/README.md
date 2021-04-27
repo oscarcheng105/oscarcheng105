@@ -1,4 +1,6 @@
-# CS32 - Introduction to Computer Science (Data Structrue)
-Couple of Projects in CS32
+# CS32 - Introduction to Computer Science II (Data Structrue)
+Coursework in CS32
 * Project1 (Bad Blood)
+* Project2 (Linked List)
 * Project3 (MiniRogue)
+* Project4 (ChatTracker)
