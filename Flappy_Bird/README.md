@@ -1,2 +1,2 @@
 # FLAPPY BIRD
-Unity environment and C# practice through the game flappy bird.
+Unity develeopment environment and C# practice through the game flappy bird.
