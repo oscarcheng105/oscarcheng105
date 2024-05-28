@@ -1,4 +1,4 @@
 
-Hi, I am Oscar (Kai-Chen) Cheng. Currently a student studying Mathematics of Computation at UCLA.
+Hi, I am Oscar (Kai-Chen) Cheng. UCLA Alumni, Mathematics of Computation BS.
 
-These are the projects that I have worked on.
+Here are the projects that I have worked on.
